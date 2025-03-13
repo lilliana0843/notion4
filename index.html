@@ -1,59 +1,83 @@
-<ul class="slides">
-  <input type="radio" id="control-1" name="control" checked>
-  <input type="radio" id="control-2" name="control">
-  <input type="radio" id="control-3" name="control">
-  <input type="radio" id="control-4" name="control">
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輪播圖片</title>
+  <style>* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.carousel {
+  position: relative;
+  width: 50%;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+button {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+</style>
   
-  <!--  Left/Right Button  -->
-  <div class="navigator slide-1">
-    <label for="control-4">
-      <i class="fas fa-chevron-left"></i>
-    </label>
-    <label for="control-2">
-      <i class="fas fa-chevron-right"></i>
-    </label>
-  </div>
-  
-  <div class="navigator slide-2">
-    <label for="control-1">
-      <i class="fas fa-chevron-left"></i>
-    </label>
-    <label for="control-3">
-      <i class="fas fa-chevron-right"></i>
-    </label>
-  </div>
-  
-  <div class="navigator slide-3">
-    <label for="control-2">
-      <i class="fas fa-chevron-left"></i>
-    </label>
-    <label for="control-4">
-      <i class="fas fa-chevron-right"></i>
-    </label>
-  </div>
-  
-    <div class="navigator slide-4">
-    <label for="control-3">
-      <i class="fas fa-chevron-left"></i>
-    </label>
-    <label for="control-1">
-      <i class="fas fa-chevron-right"></i>
-    </label>
-  </div>
-  
-  <!--  /Left/Right Button  -->
-  
-  <li class="slide"><img src="https://images.plurk.com/6zTYVmUN1ks5I9K70xthWW.png" alt=""/></li>
-  <li class="slide"><img src="https://images.plurk.com/2uncxAeU5FRXneP6WalDx0.png" alt=""/></li>
-  <li class="slide"><img src="https://images.plurk.com/mwuWMrQJFryjyxgqwpkkg.png" alt=""/></li>
-    <li class="slide"><img src="https://images.plurk.com/1nUm6Xl0cZRggELosyQq22.png" alt=""/></li>
-  
-  <div class="controls-visible">
-    <label for="control-1"></label>
-    <label for="control-2"></label>
-    <label for="control-3"></label>
-    <label for="control-4"></label>
+</head>
+<body>
+  <div class="carousel">
+    <div class="carousel-images">
+      <img src="https://images.plurk.com/4oZTWYE3x1dV5wJfYIj1tF.png" alt="Image 1">
+      <img src="https://images.plurk.com/1dubu6QtQRS0xuNDh8qE6.png" alt="Image 2">
+      <img src="https://images.plurk.com/1SvnS9FFQBNKsn1Q7ZdNS4.png" alt="Image 3">
+        <img src="https://images.plurk.com/IL7RWzCbfkZs5TsvDNOY9.png" alt="Image 4">
+    </div>
+    <div class="carousel-nav">
+      <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
   </div>
 
-</ul>
+  <script>let currentIndex = 0;
 
+function moveSlide(step) {
+  const slides = document.querySelectorAll('.carousel-images img');
+  currentIndex = (currentIndex + step + slides.length) % slides.length;
+  document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+</script>
+  
+</body>
+</html>
