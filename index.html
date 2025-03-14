@@ -12,7 +12,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  height: 100%; /* 确保页面填满整个视窗 */
+  box-sizing: border-box;
 }
 
 body {
@@ -20,20 +20,25 @@ body {
 }
 
 .carousel {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* 根據需要調整寬度 */
+  height: 300px; /* 根據需要調整高度 */
   overflow: hidden;
 }
+
 
 .carousel-images {
   display: flex;
   transition: transform 0.5s ease;
 }
 
+/* 調整內部圖片的大小 */
 .carousel-images img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carousel-nav {
